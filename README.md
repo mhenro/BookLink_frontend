@@ -1,0 +1,1 @@
+Test project for learning react-js, redux, es6 and webpack.
