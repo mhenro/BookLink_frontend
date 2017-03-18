@@ -1,0 +1,19 @@
+/* SearchPanel */
+.search-panel {
+    width: 200px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: white;
+    background-image: url('../../../images/search.png');
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding: 6px 20px 6px 30px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search-panel:focus {
+    width: 100%;
+}

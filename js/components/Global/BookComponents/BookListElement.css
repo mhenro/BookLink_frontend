@@ -1,0 +1,31 @@
+.book-list-element {
+    border: 1px solid #c3c3c3;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.book-list-element .book-img {
+    float: left;
+    border: 1px solid #c3c3c3;
+    width: 20%;
+}
+
+.book-list-element .center {
+    float: left;
+    padding: 10px;
+    width: 50%;
+}
+
+.book-list-element .center table .name {
+    font-weight: bold;
+    width: 100px;
+}
+
+.book-list-element .author-img {
+    float: left;
+    border: 1px solid #c3c3c3;
+    width: 20%;
+}
+.book-list-element .footer {
+    clear: both;
+}

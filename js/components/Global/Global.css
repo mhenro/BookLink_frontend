@@ -1,0 +1,44 @@
+/* debug */
+div {
+    /*border: 1px solid red;*/
+}
+
+/* main layout */
+body {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #fff;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.primary {
+    float: left;
+    width: 180px;
+    text-align: center;
+}
+
+
+.content {
+    float: left;
+    width: 594px;
+    text-align: justify;
+}
+
+.secondary {
+    float: left;
+    width: 180px;
+    text-align: center;
+}
+
+.footer {
+    clear: both;
+}
+
+
+
+
