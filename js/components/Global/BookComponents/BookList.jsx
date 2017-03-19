@@ -6,7 +6,7 @@ class BookList extends React.Component {
         return (
             <div id="book-list">
                 {
-                    this.props.bookList.books.list.map(book =>
+                    this.props.bookList.map(book =>
                         <BookListElement
                             key={book.bookId}
                             {...book}
