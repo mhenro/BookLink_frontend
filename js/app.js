@@ -10,6 +10,7 @@ import LeftMenu from './components/Global/LeftMenu.jsx';
 import Footer from './components/Global/Footer.jsx';
 
 import PageBooks from './components/Global/TopMenuPages/PageBooks.jsx';
+import BookViewer from './components/Global/BookComponents/BookViewer.jsx';
 import PageAuthors from './components/Global/TopMenuPages/PageAuthors.jsx';
 import PageRatings from './components/Global/TopMenuPages/PageRatings.jsx';
 import PageForums from './components/Global/TopMenuPages/PageForums.jsx';
@@ -30,55 +31,58 @@ import './Components/Global/Global.css';
 
 let store = createStore(appReducer);
 
-const Root = () => {
-    return (
-        <BrowserRouter basename="/booklink">
-            <div>
-                <div className="header">
-                    <Menu items={[
-                        {'Книги': 'books'},
-                        {'Авторы': 'authors'},
-                        {'Рейтинги': 'ratings'},
-                        {'Обсуждения': 'forums'},
-                        {'Обзоры': 'reviews'},
-                        {'Помощь': 'help'}
-                    ]} />
-                </div>
-                <div className="container">
-                    <div className="primary">
-                        <LeftMenu />
+class Root extends React.Component {
+    render() {
+        return (
+            <BrowserRouter basename="/booklink">
+                <div>
+                    <div className="header">
+                        <Menu items={[
+                            {'Книги': 'books'},
+                            {'Авторы': 'authors'},
+                            {'Рейтинги': 'ratings'},
+                            {'Обсуждения': 'forums'},
+                            {'Обзоры': 'reviews'},
+                            {'Помощь': 'help'}
+                        ]}/>
                     </div>
+                    <div className="container">
+                        <div className="primary">
+                            <LeftMenu />
+                        </div>
 
-                    <div className="content">
-                        {/* top menu pages*/}
-                        <Match exactly pattern='/' component={PageBooks} />
-                        <Match exactly pattern='/books' component={PageBooks} />
-                        <Match exactly pattern='/authors' component={PageAuthors} />
-                        <Match exactly pattern='/ratings' component={PageRatings} />
-                        <Match exactly pattern='/forums' component={PageForums} />
-                        <Match exactly pattern='/reviews' component={PageReviews} />
-                        <Match exactly pattern='/help' component={PageHelp} />
+                        <div className="content">
+                            {/* top menu pages*/}
+                            <Match exactly pattern='/' component={PageBooks}/>
+                            <Match exactly pattern='/books' component={PageBooks}/>
+                            <Match exactly pattern='/bookviewer' component={BookViewer}/>
+                            <Match exactly pattern='/authors' component={PageAuthors}/>
+                            <Match exactly pattern='/ratings' component={PageRatings}/>
+                            <Match exactly pattern='/forums' component={PageForums}/>
+                            <Match exactly pattern='/reviews' component={PageReviews}/>
+                            <Match exactly pattern='/help' component={PageHelp}/>
 
-                        {/* left menu pages */}
-                        <Match exactly pattern='/me' component={Me} />
-                        <Match exactly pattern='/news' component={News} />
-                        <Match exactly pattern='/messages' component={Messages} />
-                        <Match exactly pattern='/friends' component={Friends} />
-                        <Match exactly pattern='/groups' component={Groups} />
+                            {/* left menu pages */}
+                            <Match exactly pattern='/me' component={Me}/>
+                            <Match exactly pattern='/news' component={News}/>
+                            <Match exactly pattern='/messages' component={Messages}/>
+                            <Match exactly pattern='/friends' component={Friends}/>
+                            <Match exactly pattern='/groups' component={Groups}/>
 
-                        <Miss component={NotFound} />
+                            <Miss component={NotFound}/>
+                        </div>
+
+                        <div className="secondary">
+                            <p>Secondary Sidebar</p>
+                        </div>
                     </div>
-
-                    <div className="secondary">
-                        <p>Secondary Sidebar</p>
+                    <div className="footer">
+                        <Footer />
                     </div>
                 </div>
-                <div className="footer">
-                    <Footer />
-                </div>
-            </div>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
 }
 
 render(

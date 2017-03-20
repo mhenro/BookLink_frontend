@@ -1,5 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router';
+import { connect } from 'react-redux';
 import './BookListElement.css';
+
+import {fetchBookTextRequest} from '../../../actions/BookActions.jsx';
 
 class BookListElement extends React.Component {
     render() {
@@ -40,7 +44,8 @@ class BookListElement extends React.Component {
                     </div>
                 </div>
                 <div className="footer">
-                    <input className="btn-read" type="button" value="Читать"/>
+                    {/*<input className="btn-read" onClick={} type="button" value="Читать"/>*/}
+                    <Link className="btn-read" onClick={this.props.onFetchBookText.bind(this, this.props.bookId)} to={'/bookviewer'}>Читать</Link>
                     <input className="btn-go-to-author" type="button" value="Перейти на страницу автора"/>
                 </div>
             </div>
@@ -48,4 +53,19 @@ class BookListElement extends React.Component {
     }
 }
 
-export default BookListElement;
+const mapStateToProps = (state) => {
+    return {
+        currentBookId: state.BookListReducer.currentBookId,
+        currentBookData: state.BookListReducer.currentBookData
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFetchBookText: (bookId) => {
+            dispatch(fetchBookTextRequest(bookId));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookListElement);

@@ -29,3 +29,23 @@
 .book-list-element .footer {
     clear: both;
 }
+
+/* buttons style */
+.book-list-element .btn-read,
+.book-list-element .btn-go-to-author {
+    margin-right: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.book-list-element .btn-read:hover,
+.book-list-element .btn-go-to-author:hover {
+    background-color: #4C5550; /* Green */
+}

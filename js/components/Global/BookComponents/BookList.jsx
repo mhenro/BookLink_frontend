@@ -9,6 +9,7 @@ class BookList extends React.Component {
                     this.props.bookList.map(book =>
                         <BookListElement
                             key={book.bookId}
+                            bookId={book.bookId}
                             {...book}
                         />
                     )

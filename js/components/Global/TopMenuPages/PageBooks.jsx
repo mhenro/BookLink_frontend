@@ -14,15 +14,13 @@ import {
     changeBookPage} from '../../../actions/BookActions.jsx';
 
 class PageBooks extends React.Component {
-    onFetchBooks() {
-        this.props.onFetchBooks(this.props.currentPage);
+    componentDidMount() {
+        this.props.onFetchBooks(1);
     }
 
     render() {
         return (
             <div>
-                <br/>
-                <input onClick={this.onFetchBooks.bind(this)} type="button" value="Читать"/>
                 <br/>
                 <SearchPanel blankText="Найти книгу..."/>
                 <br/>

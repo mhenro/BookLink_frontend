@@ -2,27 +2,35 @@ import React, { Component } from 'react';
 import {Link} from 'react-router';
 import './Menu.css';
 
+const BOOKS_MENU = 'books';
+const AUTHORS_MENU = 'authors';
+const RATINGS_MENU = 'ratings';
+const FORUMS_MENU = 'forums';
+const REVIEWS_MENU = 'reviews';
 const HELP_MENU = 'help';
 
-export default class Menu extends Component {
+class Menu extends Component {
     render() {
-        var self = this;
         return (
             <div>
                 <ul className="menu">
                     {
                         this.props.items.map(function(m, index) {
-                            var style = {};
-                            if (Object.values(m)[0].toLowerCase() == HELP_MENU.toLowerCase()) {
+                            let key = Object.keys(m)[0];
+                            let value = Object.values(m)[0];
+                            let style = {};
+                            if (value.toLowerCase() == HELP_MENU.toLowerCase()) {
                                 style = {float: 'right'};
                             }
-                            return <li key={Object.values(m)[0]} style={style}>
-                                <Link activeClassName="active" to={'/' + Object.values(m)[0]}>{Object.keys(m)[0]}</Link>
+                            return <li key={value} style={style}>
+                                <Link activeClassName="active" to={'/' + value}>{key}</Link>
                             </li>;
-                        })
+                        }.bind(this))
                     }
                 </ul>
             </div>  
         );
     }
 }
+
+export default Menu;
