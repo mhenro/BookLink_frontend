@@ -14,7 +14,11 @@ export const fetchBooks = (currentPage) => {
     const URL = "http://localhost:8080/booklink/BookController/books?"
         + "page=" + currentPage;
     return fetch(URL, {method: 'GET'})
-        .then(response => Promise.all([response, response.json()]));
+        .then(response => Promise.all([response, response.json()]))
+        .catch(error => {
+            alert(error);
+        });
+
 };
 
 export const fetchBooksAction = () => {
@@ -48,7 +52,10 @@ export const changeBookPage = (payload) => {
 export const fetchBookText = (bookId) => {
     const URL = "http://localhost:8080/booklink/BookController/books/" + bookId;
     return fetch(URL, {method: 'GET'})
-        .then(response => Promise.all([response, response.json()]));
+        .then(response => Promise.all([response, response.json()]))
+        .catch(error => {
+            alert(error);
+        });;
 };
 
 export const fetchBookTextRequest = (bookId) => {

@@ -25,6 +25,8 @@ import Groups from './components/Global/LeftMenuPages/Groups.jsx';
 
 import NotFound from './components/Global/NotFound.jsx';
 
+import LoginPanel from './components/Global/Login/LoginPanel.jsx';
+
 import { BrowserRouter, Match, Miss } from 'react-router'
 
 import './Components/Global/Global.css';
@@ -73,7 +75,7 @@ class Root extends React.Component {
                         </div>
 
                         <div className="secondary">
-                            <p>Secondary Sidebar</p>
+                            <LoginPanel/>
                         </div>
                     </div>
                     <div className="footer">
