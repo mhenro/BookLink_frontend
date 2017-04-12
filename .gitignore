@@ -2,4 +2,3 @@ node_modules
 .idea
 app_packed.js
 styles.css
-*.png
