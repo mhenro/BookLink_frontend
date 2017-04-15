@@ -5,7 +5,10 @@ import './LoginPanel.css';
 import {
     sendLogin,
     sendLoginSuccess,
-    sendLoginError
+    sendLoginError,
+    setLogin,
+    setPassword,
+    setToken
 } from '../../../actions/AuthActions.jsx';
 
 
@@ -14,11 +17,26 @@ class LoginPanel extends React.Component {
         super(props);
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onLoginChange = this.onLoginChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onLogout = this.onLogout.bind(this);
     }
 
     onSubmit(event) {
         event.preventDefault();
-        this.props.onSendLogin('user', 'pswd');
+        this.props.onSendLogin(this.props.login, this.props.password);
+    }
+
+    onLoginChange(event) {
+        this.props.onSetLogin(event.target.value);
+    }
+
+    onPasswordChange(event) {
+        this.props.onSetPassword(event.target.value);
+    }
+
+    onLogout() {
+        this.props.onLogout();
     }
 
     render() {
@@ -32,19 +50,19 @@ class LoginPanel extends React.Component {
                         <div>
                             Привет, {this.props.login}!
                             <br/>
-                            <button type="submit" className="btn-logout">Выйти</button>
+                            <button type="submit" onClick={this.onLogout} className="btn-logout">Выйти</button>
                         </div>
 
                         :
                         <div>
                             <label><b>Логин</b></label>
                             <br/>
-                            <input type="text" placeholder="Введите логин" name="login" required/>
+                            <input type="text" onChange={this.onLoginChange} placeholder="Введите логин" name="login" required/>
                             <br/>
 
                             <label><b>Пароль</b></label>
                             <br/>
-                            <input type="password" placeholder="Введите пароль" name="password" required/>
+                            <input type="password" onChange={this.onPasswordChange} placeholder="Введите пароль" name="password" required/>
                             <br/>
 
                             <button type="submit" className="btn-login">Войти</button>
@@ -60,7 +78,8 @@ class LoginPanel extends React.Component {
 const mapStateToProps = (state) => {
     return {
         registered: state.GlobalReducer.registered,
-        login: state.GlobalReducer.user.login
+        login: state.GlobalReducer.user.login,
+        password: state.GlobalReducer.user.password
     }
 };
 
@@ -69,12 +88,25 @@ const mapDispatchToProps = (dispatch) => {
         onSendLogin: (username, password) => {
             return sendLogin(username, password).then(([response, json]) => {
                 if (response.status === 200) {
-                    dispatch(sendLoginSuccess(json));
+                    //dispatch(sendLoginSuccess(json));
+                    dispatch(setToken(json.message));
                 }
                 else {
                     dispatch(sendLoginError());
                 }
             })
+        },
+
+        onSetLogin: (login) => {
+            dispatch(setLogin(login));
+        },
+
+        onSetPassword: (password) => {
+            dispatch(setPassword(password));
+        },
+
+        onLogout: () => {
+            dispatch(setToken(''));
         }
     }
 };
