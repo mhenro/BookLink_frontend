@@ -1,7 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class Me extends React.Component {
+export default class Me extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        fetch("http://localhost:8080/booklink/BookController/getJson", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.props.token
+            }
+        })
+            .then(response => Promise.all([response, response.json()]))
+            .catch(error => {
+                alert(error);
+            });
+    }
+
     render() {
         return (
             <div>
@@ -14,21 +34,9 @@ class Me extends React.Component {
                         Пожалуйста, войдите в систему, чтобы получить доступ к этой странице
                     </div>
                 }
+
+                <button type="button" onClick={this.onClick}>check secured</button>
             </div>
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        registered: state.GlobalReducer.registered
-    }
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Me);

@@ -17,7 +17,7 @@ import PageForums from './components/Global/TopMenuPages/PageForums.jsx';
 import PageReviews from './components/Global/TopMenuPages/PageReviews.jsx';
 import PageHelp from './components/Global/TopMenuPages/PageHelp.jsx';
 
-import Me from './components/Global/LeftMenuPages/Me.jsx';
+import MeContainer from './containers/MeContainer.jsx';
 import News from './components/Global/LeftMenuPages/News.jsx';
 import Messages from './components/Global/LeftMenuPages/Messages.jsx';
 import Friends from './components/Global/LeftMenuPages/Friends.jsx';
@@ -65,7 +65,7 @@ class Root extends React.Component {
                             <Match exactly pattern='/help' component={PageHelp}/>
 
                             {/* left menu pages */}
-                            <Match exactly pattern='/me' component={Me}/>
+                            <Match exactly pattern='/me' component={MeContainer}/>
                             <Match exactly pattern='/news' component={News}/>
                             <Match exactly pattern='/messages' component={Messages}/>
                             <Match exactly pattern='/friends' component={Friends}/>
