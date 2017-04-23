@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router';
 import './LoginPanel.css';
 
 import {
@@ -66,7 +67,10 @@ class LoginPanel extends React.Component {
                             <br/>
 
                             <button type="submit" className="btn-login">Войти</button>
-                            <span className="psw">Забыли <a href="#">пароль?</a></span>
+                            <Link className="btn-register" to="/registration">Регистрация</Link>
+                            <div className="psw">
+                                Забыли <a href="#">пароль?</a>
+                            </div>
                         </div>
                     }
                 </div>

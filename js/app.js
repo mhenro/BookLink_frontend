@@ -23,6 +23,8 @@ import Messages from './components/Global/LeftMenuPages/Messages.jsx';
 import Friends from './components/Global/LeftMenuPages/Friends.jsx';
 import Groups from './components/Global/LeftMenuPages/Groups.jsx';
 
+import Registration from './components/Global/Login/Registration.jsx';
+
 import NotFound from './components/Global/NotFound.jsx';
 
 import LoginPanel from './components/Global/Login/LoginPanel.jsx';
@@ -70,6 +72,9 @@ class Root extends React.Component {
                             <Match exactly pattern='/messages' component={Messages}/>
                             <Match exactly pattern='/friends' component={Friends}/>
                             <Match exactly pattern='/groups' component={Groups}/>
+
+                            {/* registration */}
+                            <Match exactly pattern='/registration' component={Registration}/>
 
                             <Miss component={NotFound}/>
                         </div>

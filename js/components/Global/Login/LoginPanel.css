@@ -21,7 +21,20 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
+    float: left;
+}
+
+.login-panel .btn-register {
+    background-color: #66ccff;
+    color: white;
+    padding: 6px 10px;
+    margin: 7px 0;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    width: 50%;
+    float: right;
 }
 
 .login-panel .btn-logout {
@@ -52,6 +65,7 @@
     padding: 8px;
 }
 
-.login-panel span.psw {
+.login-panel .psw {
+    clear: both;
     padding-top: 8px;
 }
