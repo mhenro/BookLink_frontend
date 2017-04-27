@@ -3,6 +3,7 @@
     border: 1px solid #c3c3c3;
     margin-left: 20px;
     margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .login-panel input[type=text], .login-panel input[type=password] {

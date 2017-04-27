@@ -42,7 +42,7 @@ class LoginPanel extends React.Component {
 
     render() {
         return (
-            <form className="login-panel" onSubmit={this.onSubmit} method="POST">
+            <form className="login-panel" onSubmit={this.onSubmit}>
                 <div className="avatar-container">
                     <img src="images/avatar.png" alt="avatar" className="avatar"/>
                 </div>
