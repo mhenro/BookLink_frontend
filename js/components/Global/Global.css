@@ -39,6 +39,7 @@ body {
     clear: both;
 }
 
-
-
+.clear-fix {
+    clear: both;
+}
 

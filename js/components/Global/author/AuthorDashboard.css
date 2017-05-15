@@ -1,0 +1,10 @@
+.author-dashboard .small {
+    font-size: 10px;
+}
+
+.author-dashboard .item {
+    float: left;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}

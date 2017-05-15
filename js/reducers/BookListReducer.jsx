@@ -18,7 +18,7 @@ const initialState = {
 
     currentBookId: 0,
     currentBookData: {}
-}
+};
 
 const BookListReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -42,7 +42,7 @@ const BookListReducer = (state = initialState, action) => {
             return Object.assign({}, state, {currentBookData: action.payload});
 
         default:
-            return state
+            return state;
     }
 };
 
