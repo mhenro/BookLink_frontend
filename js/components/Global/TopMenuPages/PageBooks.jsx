@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
 import BookList from '../BookComponents/BookList.jsx';
 import SearchPanel from '../SearchPanel.jsx';
 import BookPaginator from '../BookPaginator.jsx';
+import { NotificationManager } from 'react-notifications';
 
 import {
     receiveBooksAction,
     fetchBooksAction,
     fetchBooksSuccess,
     fetchBooksError,
+    fetchBookTextRequest,
     fetchBooks,
     changeBookPage} from '../../../actions/BookActions.jsx';
 
@@ -33,7 +34,8 @@ class PageBooks extends React.Component {
                     booksOnPage={this.props.bookList.length}
                 />
                 <br/>
-                <BookList bookList={this.props.bookList} />
+                <BookList bookList={this.props.bookList}
+                          onFetchBookText={this.props.onFetchBookText}/>
                 <br/>
             </div>
         );
@@ -63,8 +65,14 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 else {
                     dispatch(fetchBooksError());
+                    NotificationManager.error(response.statusText, 'Ошибка');
                 }
+            }).catch(error => {
+                NotificationManager.error(error.message, 'Ошибка');
             })
+        },
+        onFetchBookText: (bookId) => {
+            dispatch(fetchBookTextRequest(bookId));
         }
     }
 }

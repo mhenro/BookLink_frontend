@@ -1,4 +1,4 @@
-.me-container div {
+.me-container {
 
 }
 
@@ -59,4 +59,8 @@
     float: right;
     width: 370px;
     height: 300px;
+}
+
+.me-container .book-list {
+    border: 1px solid red;
 }

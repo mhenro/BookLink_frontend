@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
+import { NotificationManager } from 'react-notifications';
 import './LoginPanel.css';
 
 import {
@@ -94,11 +95,16 @@ const mapDispatchToProps = (dispatch) => {
                 if (response.status === 200) {
                     //dispatch(sendLoginSuccess(json));
                     dispatch(setToken(json.message));
+                    sessionStorage.setItem('token', json.message);
+                    sessionStorage.setItem('username', username);
                 }
                 else {
                     dispatch(sendLoginError());
+                    NotificationManager.error(response.statusText, 'Ошибка');
                 }
-            })
+            }).catch(error => {
+                NotificationManager.error(error.message, 'Ошибка');
+            });
         },
 
         onSetLogin: (login) => {
@@ -111,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
 
         onLogout: () => {
             dispatch(setToken(''));
+            sessionStorage.clear();
         }
     }
 };

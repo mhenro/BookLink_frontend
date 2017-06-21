@@ -1,7 +1,7 @@
 import React from 'react';
 import BookListElement from './BookListElement.jsx';
 
-class BookList extends React.Component {
+export default class BookList extends React.Component {
     render() {
         return (
             <div id="book-list">
@@ -10,6 +10,7 @@ class BookList extends React.Component {
                         <BookListElement
                             key={book.bookId}
                             bookId={book.bookId}
+                            onFetchBookText={this.props.onFetchBookText}
                             {...book}
                         />
                     )
@@ -17,6 +18,4 @@ class BookList extends React.Component {
             </div>
         );
     }
-}
-
-export default BookList;
+};

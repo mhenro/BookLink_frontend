@@ -1,3 +1,5 @@
+import doFetch from './fetch.js';
+
 export const SET_REG_LOGIN = 'SET_REG_LOGIN';
 export const SET_REG_PASSWORD = 'SET_REG_PASSWORD';
 export const SET_REG_EMAIL = 'SET_REG_EMAIL';
@@ -27,24 +29,11 @@ export const setRegEmail = (email) => {
 };
 
 export const sendCredentials = (login, password, email) => {
-    const URL = "http://localhost:8080/booklink/registration";
-    return fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            login: login,
-            password: password,
-            email: email
-        })
-    })
-        .then(response => Promise.all([response, response.json()]))
-        .catch(error => {
-            alert(error);
-        });
-
+    return doFetch('http://localhost:8080/booklink/registration', {
+        login: login,
+        password: password,
+        email: email
+    });
 };
 
 export const sendCredetialsSuccess = () => {

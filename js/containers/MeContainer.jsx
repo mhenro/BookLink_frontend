@@ -2,12 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './MeContainer.css';
 
-import Me from '../components/Global/LeftMenuPages/Me.jsx';
 import AuthorInfo from '../components/Global/author/AuthorInfo.jsx';
 import AuthorDashboard from '../components/Global/author/AuthorDashboard.jsx';
+import BookList from '../components/Global/BookComponents/BookList.jsx';
 
 class MeContainer extends React.Component {
+    componentDidMount() {
+        //TODO: load all author books
+    }
+
     render() {
+        if (!this.props.registered) {
+            return (
+                <div>
+                    Пожалуйста, войдите в систему, чтобы получить доступ к этой странице
+                </div>
+            );
+        }
+
         return (
             <div className="me-container">
                 <br/>
@@ -40,8 +52,9 @@ class MeContainer extends React.Component {
                         />
                         <AuthorDashboard/>
                     </div>
+                    <div className="clear-fix"></div>
+                    <BookList bookList={this.props.authorBooks}/>
                 </div>
-                <div className="clear-fix"></div>
             </div>
         )
     }
@@ -58,7 +71,9 @@ const mapStateToProps = (state) => {
         lastUpdate: state.AuthorReducer.lastUpdate,
         volume: state.AuthorReducer.volume,
         rating: state.AuthorReducer.rating,
-        visitors: state.AuthorReducer.visitors
+        visitors: state.AuthorReducer.visitors,
+
+        authorBooks: state.AuthorReducer.authorBooks
     }
 };
 

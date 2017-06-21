@@ -5,7 +5,13 @@ import './BookListElement.css';
 
 import {fetchBookTextRequest} from '../../../actions/BookActions.jsx';
 
-class BookListElement extends React.Component {
+export default class BookListElement extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onReadButtonClick = this.onReadButtonClick.bind(this);
+    }
+
     render() {
         return (
             <div className="book-list-element">
@@ -44,28 +50,30 @@ class BookListElement extends React.Component {
                     </div>
                 </div>
                 <div className="footer">
-                    {/*<input className="btn-read" onClick={} type="button" value="Читать"/>*/}
-                    <Link className="btn-read" onClick={this.props.onFetchBookText.bind(this, this.props.bookId)} to={'/bookviewer'}>Читать</Link>
+                    {this.renderDeleteButton()}
+                    {this.renderEditButton()}
+                    <Link className="btn-read" onClick={this.onReadButtonClick} to={'/bookviewer'}>Читать</Link>
                     <input className="btn-go-to-author" type="button" value="Перейти на страницу автора"/>
                 </div>
             </div>
         );
     }
-}
 
-const mapStateToProps = (state) => {
-    return {
-        currentBookId: state.BookListReducer.currentBookId,
-        currentBookData: state.BookListReducer.currentBookData
+    renderDeleteButton() {
+        //TODO: check for owner
+        return (
+            <input className="btn-go-to-author" type="button" value="Удалить"/>
+        )
+    }
+
+    renderEditButton() {
+        //TODO: check for owner
+        return (
+            <input className="btn-go-to-author" type="button" value="Редактировать"/>
+        )
+    }
+
+    onReadButtonClick() {
+        this.props.onFetchBookText(this.props.bookId);
     }
 };
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onFetchBookText: (bookId) => {
-            dispatch(fetchBookTextRequest(bookId));
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookListElement);

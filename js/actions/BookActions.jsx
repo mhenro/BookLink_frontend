@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import doFetch from './fetch.js';
 
 export const FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST';
 export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS';
@@ -11,14 +11,7 @@ export const FETCH_BOOK_TEXT_ERROR = 'FETCH_BOOK_TEXT_ERROR';
 
 /* actions for fetching the books array */
 export const fetchBooks = (currentPage) => {
-    const URL = "http://localhost:8080/booklink/BookController/books?"
-        + "page=" + currentPage;
-    return fetch(URL, {method: 'GET'})
-        .then(response => Promise.all([response, response.json()]))
-        .catch(error => {
-            alert(error);
-        });
-
+    return doFetch('http://localhost:8080/booklink/BookController/books?page=' + currentPage);
 };
 
 export const fetchBooksAction = () => {
@@ -50,12 +43,7 @@ export const changeBookPage = (payload) => {
 
 /* actions for fetching book's text */
 export const fetchBookText = (bookId) => {
-    const URL = "http://localhost:8080/booklink/BookController/books/" + bookId;
-    return fetch(URL, {method: 'GET'})
-        .then(response => Promise.all([response, response.json()]))
-        .catch(error => {
-            alert(error);
-        });;
+    return doFetch('http://localhost:8080/booklink/BookController/books/' + bookId);
 };
 
 export const fetchBookTextRequest = (bookId) => {
@@ -63,7 +51,7 @@ export const fetchBookTextRequest = (bookId) => {
         type: FETCH_BOOK_TEXT_REQUEST,
         bookId
     }
-}
+};
 
 export const fetchBookTextSuccess = (payload) => {
     return {
@@ -76,4 +64,4 @@ export const fetchBookTextError = () => {
     return {
         type: FETCH_BOOK_TEXT_ERROR
     }
-}
+};

@@ -19,27 +19,34 @@ body {
 .primary {
     float: left;
     width: 180px;
+    height: 100%;
     text-align: center;
 }
-
 
 .content {
     float: left;
     width: 594px;
+    height: 100%;
     text-align: justify;
 }
 
 .secondary {
     float: left;
     width: 180px;
+    height: 100%;
+    margin-bottom: 200px;
     text-align: center;
 }
 
 .footer {
-    clear: both;
+
 }
 
 .clear-fix {
     clear: both;
 }
+
+
+
+
 

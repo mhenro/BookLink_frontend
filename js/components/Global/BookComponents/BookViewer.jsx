@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NotificationManager } from 'react-notifications';
 import './BookViewer.css';
 
 import {
@@ -36,7 +37,10 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 else {
                     dispatch(fetchBookTextError());
+                    NotificationManager.error(response.statusText, 'Ошибка');
                 }
+            }).catch(error => {
+                NotificationManager.error(error.message, 'Ошибка');
             })
         }
     }

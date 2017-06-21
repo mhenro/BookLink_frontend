@@ -6,7 +6,9 @@ const initialState = {
     lastUpdate: '16 мая 2017г.',
     volume: '1123kB',
     rating: '4.72*6',
-    visitors: '654789чел.'
+    visitors: '654789чел.',
+
+    authorBooks: []
 };
 
 const AuthorReducer = (state = initialState, action) => {

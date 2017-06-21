@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NotificationManager } from 'react-notifications';
 import './Paginator.css';
 
 import {changeBookPage, fetchBooksAction, fetchBooksSuccess, fetchBooksError, fetchBooks} from '../../actions/BookActions.jsx';
@@ -49,10 +50,13 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 else {
                     dispatch(fetchBooksError());
+                    NotificationManager.error(response.statusText, 'Ошибка');
                 }
+            }).catch(error => {
+                NotificationManager.error(error.message, 'Ошибка');
             })
         }
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginator);

@@ -29,6 +29,10 @@ import NotFound from './components/Global/NotFound.jsx';
 
 import LoginPanel from './components/Global/Login/LoginPanel.jsx';
 
+import GlobalDataContainer from './containers/GlobalDataContainer.jsx';
+
+import { NotificationContainer } from 'react-notifications';
+
 import { BrowserRouter, Match, Miss } from 'react-router'
 
 import './Components/Global/Global.css';
@@ -41,14 +45,7 @@ class Root extends React.Component {
             <BrowserRouter basename="/booklink">
                 <div>
                     <div className="header">
-                        <Menu items={[
-                            {'Книги': 'books'},
-                            {'Авторы': 'authors'},
-                            {'Рейтинги': 'ratings'},
-                            {'Обсуждения': 'forums'},
-                            {'Обзоры': 'reviews'},
-                            {'Помощь': 'help'}
-                        ]}/>
+                        <Menu items={this.getTopMenuItems()}/>
                     </div>
                     <div className="container">
                         <div className="primary">
@@ -83,12 +80,29 @@ class Root extends React.Component {
                             <LoginPanel/>
                         </div>
                     </div>
+                    <div className="clear-fix"></div>
                     <div className="footer">
                         <Footer />
                     </div>
+
+                    <GlobalDataContainer/>
+
+                    <NotificationContainer/>
                 </div>
             </BrowserRouter>
         );
+    }
+
+    /* function for generating menu items */
+    getTopMenuItems() {
+        return [
+            {'Книги': 'books'},
+            {'Авторы': 'authors'},
+            {'Рейтинги': 'ratings'},
+            {'Обсуждения': 'forums'},
+            {'Обзоры': 'reviews'},
+            {'Помощь': 'help'}
+        ];
     }
 }
 
@@ -97,4 +111,4 @@ render(
         <Root />
     </Provider>,
     document.getElementById('react-content')
-)
+);

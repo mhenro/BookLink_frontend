@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NotificationManager } from 'react-notifications';
 import './Registration.css';
 
 import {
@@ -83,7 +84,10 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 else {
                     dispatch(sendCredentialsError(json.error.message));
+                    NotificationManager.error(response.statusText, 'Ошибка');
                 }
+            }).catch(error => {
+                NotificationManager.error(error.message, 'Ошибка');
             })
         },
         setRegLogin: (login) => {
