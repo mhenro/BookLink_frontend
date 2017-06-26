@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NotificationManager } from 'react-notifications';
 import './Paginator.css';
 
-import {changeBookPage, fetchBooksAction, fetchBooksSuccess, fetchBooksError, fetchBooks} from '../../actions/BookActions.jsx';
+import {changeBookPage, fetchBooksSuccess, fetchBooksError, fetchBooks} from '../../actions/BookActions.jsx';
 
 class Paginator extends React.Component {
     render() {
@@ -43,7 +43,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeBookPage({
                 currentPage: page
             }));
-            dispatch(fetchBooksAction());
             return fetchBooks(page).then(([response, json]) => {
                 if (response.status === 200) {
                     dispatch(fetchBooksSuccess(json));

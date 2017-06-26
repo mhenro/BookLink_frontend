@@ -10,6 +10,7 @@ export default class BookList extends React.Component {
                         <BookListElement
                             key={book.bookId}
                             bookId={book.bookId}
+                            owner={this.props.owner}
                             onFetchBookText={this.props.onFetchBookText}
                             {...book}
                         />

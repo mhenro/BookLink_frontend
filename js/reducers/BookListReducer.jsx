@@ -22,9 +22,6 @@ const initialState = {
 
 const BookListReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_BOOKS_REQUEST:
-            return state;
-
         case FETCH_BOOKS_SUCCESS:
             //return {...state, books: action.payload};
             return Object.assign({}, state, action.payload);

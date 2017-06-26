@@ -1,3 +1,12 @@
+import {
+    FETCH_AUTHOR_DETAILS_SUCCESS,
+    FETCH_AUTHOR_DETAILS_ERROR
+} from '../actions/AuthorActions.jsx';
+
+import {
+    dateToString
+} from '../DateUtils';
+
 const initialState = {
     authorName: 'ФИО',
     portalName: 'Название раздела',
@@ -13,7 +22,16 @@ const initialState = {
 
 const AuthorReducer = (state = initialState, action) => {
     switch(action.type) {
+        case FETCH_AUTHOR_DETAILS_SUCCESS:
+            return Object.assign({}, state, {
+                authorName: action.payload.name + ' ' + action.payload.surname,
+                portalName: action.payload.portalName,
+                birthday: dateToString(new Date(action.payload.birthday.year, action.payload.birthday.monthValue - 1, action.payload.birthday.dayOfMonth)),
+                city: action.payload.city
+            });
 
+        case FETCH_AUTHOR_DETAILS_ERROR:
+            return state;
 
         default:
             return state;

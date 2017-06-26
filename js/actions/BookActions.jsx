@@ -1,6 +1,5 @@
 import doFetch from './fetch.js';
 
-export const FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST';
 export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS';
 export const FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR';
 export const CHANGE_BOOKS_PAGE = 'CHANGE_BOOKS_PAGE';
@@ -12,12 +11,6 @@ export const FETCH_BOOK_TEXT_ERROR = 'FETCH_BOOK_TEXT_ERROR';
 /* actions for fetching the books array */
 export const fetchBooks = (currentPage) => {
     return doFetch('http://localhost:8080/booklink/BookController/books?page=' + currentPage);
-};
-
-export const fetchBooksAction = () => {
-    return {
-        type: FETCH_BOOKS_REQUEST
-    }
 };
 
 export const fetchBooksSuccess = (payload) => {

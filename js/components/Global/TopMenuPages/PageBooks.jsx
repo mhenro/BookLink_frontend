@@ -7,12 +7,11 @@ import { NotificationManager } from 'react-notifications';
 
 import {
     receiveBooksAction,
-    fetchBooksAction,
     fetchBooksSuccess,
     fetchBooksError,
     fetchBookTextRequest,
-    fetchBooks,
-    changeBookPage} from '../../../actions/BookActions.jsx';
+    fetchBooks
+} from '../../../actions/BookActions.jsx';
 
 class PageBooks extends React.Component {
     componentDidMount() {
@@ -34,7 +33,8 @@ class PageBooks extends React.Component {
                     booksOnPage={this.props.bookList.length}
                 />
                 <br/>
-                <BookList bookList={this.props.bookList}
+                <BookList owner={false}
+                          bookList={this.props.bookList}
                           onFetchBookText={this.props.onFetchBookText}/>
                 <br/>
             </div>
@@ -58,7 +58,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onFetchBooks: (currentPage) => {
-            dispatch(fetchBooksAction());
             return fetchBooks(currentPage).then(([response, json]) => {
                 if (response.status === 200) {
                     dispatch(fetchBooksSuccess(json));

@@ -26,10 +26,7 @@ export default class BookListElement extends React.Component {
                                 <td className="name">Название:</td>
                                 <td className="value"><a href="#">{this.props.name}</a></td>
                             </tr>
-                            <tr>
-                                <td className="name">Автор:</td>
-                                <td className="value"><a href="#">{this.props.author}</a></td>
-                            </tr>
+                            {this.renderAuthorName()}
                             <tr>
                                 <td className="name">Жанр:</td>
                                 <td className="value">{this.props.genre}</td>
@@ -45,9 +42,7 @@ export default class BookListElement extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    <div className="author-img">
-                        author image
-                    </div>
+                    {this.renderAuthorAvatar()}
                 </div>
                 <div className="footer">
                     {this.renderDeleteButton()}
@@ -59,18 +54,45 @@ export default class BookListElement extends React.Component {
         );
     }
 
+    renderAuthorName() {
+        if (!this.props.owner) {
+            return (
+                <tr>
+                    <td className="name">Автор:</td>
+                    <td className="value"><a href="#">{this.props.author.name + ' ' + this.props.author.surname}</a></td>
+                </tr>
+            )
+        }
+        return null;
+    }
+
+    renderAuthorAvatar() {
+        if (!this.props.owner) {
+            return (
+                <div className="author-img">
+                    author image
+                </div>
+            )
+        }
+        return null;
+    }
+
     renderDeleteButton() {
-        //TODO: check for owner
-        return (
-            <input className="btn-go-to-author" type="button" value="Удалить"/>
-        )
+        if (this.props.owner) {
+            return (
+                <input className="btn-go-to-author" type="button" value="Удалить"/>
+            )
+        }
+        return null;
     }
 
     renderEditButton() {
-        //TODO: check for owner
-        return (
-            <input className="btn-go-to-author" type="button" value="Редактировать"/>
-        )
+        if (this.props.owner) {
+            return (
+                <input className="btn-go-to-author" type="button" value="Редактировать"/>
+            )
+        }
+        return null;
     }
 
     onReadButtonClick() {
